@@ -1,0 +1,19 @@
+class Solution {
+    public ArrayList<Integer> dfsOfGraph(ArrayList<ArrayList<Integer>> adj) {
+        ArrayList<Integer> dfs=new ArrayList<>();
+        boolean visarr[]=new boolean[adj.size()];
+        dfs(adj, dfs,visarr,0);
+        
+        return dfs;
+    }
+        
+    public static void dfs(ArrayList<ArrayList<Integer>> adj, List<Integer> res, boolean visarr[], int node){
+        visarr[node]=true;
+        res.add(node);
+        for(Integer n: adj.get(node)){
+            if(visarr[n]==false){
+                dfs(adj, res, visarr, n);
+            }
+        }
+    }
+}
