@@ -1,0 +1,28 @@
+// visarr is visited array list, once visited any element will mark this as true to avoid re traversing
+// bfs is the response arrayList containing final bfs result
+// the inner for loop will fetch the nodes connected to parent node (only if its not traversed)
+// Link:  https://youtu.be/-tgVpUgsQ5k?si=Bz0fCOIaEvLri18T
+
+
+class Solution {   
+    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        ArrayList<Integer> bfs=new ArrayList<>();
+        Queue<Integer> q=new LinkedList<>();
+        boolean visarr[]=new boolean[V+1];
+        q.add(0);
+        visarr[0]=true;
+        while(!q.isEmpty()){
+            Integer node=q.poll();
+            bfs.add(node);
+        
+            for(Integer val: adj.get(node)){
+                if(visarr[val]==false){
+                    visarr[val]=true;
+                    q.add(val);
+                }
+            }
+        }
+        return bfs;
+        
+    }
+}
